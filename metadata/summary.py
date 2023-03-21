@@ -4,6 +4,7 @@ import os
 import sys
 import csv
 from functools import reduce
+import re
 
 from metadata.parse import parse
 
@@ -15,7 +16,7 @@ def summarise_genres(metadata_path, summary_path):
 
     with open(summary_path, 'w') as f:
         writer = csv.DictWriter(f,
-            fieldnames = ['categorie', 'uitzendingen', 'zendtijd'])
+            fieldnames = ['categorie', 'subcategorie', 'uitzendingen', 'zendtijd'])
         writer.writeheader()
         for row in aggregated_genres:
             writer.writerow(row)
@@ -30,21 +31,36 @@ def aggregate_genres(rows):
     )
     return data_by_genre.values()
 
+
 def add_row_to_genre_aggregation(data_by_genre, row):
-    genre = row['category']
+    genre_full = row['category']
+    if not genre_full:
+        return data_by_genre
+
+    genre, subgenre = split_genre(genre_full)
     duration = row['program_duration'] or 0
 
-    if genre not in data_by_genre:
-        data_by_genre[genre] = {
+    if genre_full not in data_by_genre:
+        data_by_genre[genre_full] = {
             'categorie': genre,
+            'subcategorie': subgenre,
             'uitzendingen': 1,
             'zendtijd': duration
         }
     else:
-        data_by_genre[genre]['uitzendingen'] += 1
-        data_by_genre[genre]['zendtijd'] += duration
+        data_by_genre[genre_full]['uitzendingen'] += 1
+        data_by_genre[genre_full]['zendtijd'] += duration
 
     return data_by_genre
+
+def split_genre(genre_full):
+    '''Split a name like "Informatief - Nieuws" into its components'''
+    sep = r' [-–] '
+    if len(re.findall(sep, genre_full)) == 1:
+        return re.split(sep, genre_full)
+    else:
+        return genre_full, None
+    
 
 data_dir = os.path.join(os.path.dirname(__file__), '..', 'data')
 

@@ -12,17 +12,19 @@ def test_summary(tmpdir):
 
     with open(summary_file) as f:
         reader = csv.DictReader(f)
-        assert reader.fieldnames == ['categorie', 'uitzendingen', 'zendtijd']
+        assert reader.fieldnames == ['categorie', 'subcategorie', 'uitzendingen', 'zendtijd']
         rows = [row for row in reader]
         assert len(rows) == 2
 
         expected = [
             {
-                'categorie': 'Informatief - Nieuws/actualiteiten',
+                'categorie': 'Informatief',
+                'subcategorie': 'Nieuws/actualiteiten',
                 'uitzendingen': '2',
                 'zendtijd': '50'
             }, {
-                'categorie': 'Informatief – Spel/quiz',
+                'categorie': 'Informatief',
+                'subcategorie': 'Spel/quiz',
                 'uitzendingen': '1',
                 'zendtijd': '30'
             }
