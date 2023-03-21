@@ -34,5 +34,7 @@ env.bak/
 venv.bak/
 
 # Data
-
 data/
+
+# LibreOffice lockfile
+.~lock.*
