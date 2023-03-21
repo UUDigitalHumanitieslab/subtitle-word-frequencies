@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 
 def parse(filename):
     wb = load_workbook(filename)
-    sheet = wb.get_sheet_by_name(wb.sheetnames[0])
+    sheet = wb[wb.sheetnames[0]]
 
     fieldnames = parse_header(sheet)
     datarows = parse_body(sheet, fieldnames)
