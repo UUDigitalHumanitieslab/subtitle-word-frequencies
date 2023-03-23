@@ -7,6 +7,7 @@ from functools import reduce
 import re
 
 from metadata.parse import parse
+from metadata.genres import split_genre
 
 def summarise_genres(metadata_path, summary_path):
     '''Read the metadata file and write a csv summary'''
@@ -52,14 +53,6 @@ def add_row_to_genre_aggregation(data_by_genre, row):
         data_by_genre[genre_full]['zendtijd'] += duration
 
     return data_by_genre
-
-def split_genre(genre_full):
-    '''Split a name like "Informatief - Nieuws" into its components'''
-    sep = r' [-–] '
-    if len(re.findall(sep, genre_full)) == 1:
-        return re.split(sep, genre_full)
-    else:
-        return genre_full, None
     
 
 data_dir = os.path.join(os.path.dirname(__file__), '..', 'data')

@@ -3,10 +3,9 @@ from datetime import datetime
 
 from metadata.parse import parse
 
-def test_parse():
-    here = os.path.dirname(__file__)
-    file = os.path.join(here, 'testdata/Word_frequency_qry.xlsx')
-    parsed = list(parse(file))
+
+def test_parse(metadata_filename):
+    parsed = list(parse(metadata_filename))
 
     assert len(parsed) == 3
 
