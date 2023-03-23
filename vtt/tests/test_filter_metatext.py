@@ -15,8 +15,10 @@ cases = {
     '(muziek)': True,
     'Muziek!': False,
     'APPLAUS EN GEJUICH': True,
+    '*La la la la': True,
 }
 
 @pytest.mark.parametrize('fragment', cases.keys())
 def test_is_metatext(fragment):
     assert is_metatext(fragment) == cases[fragment]
+

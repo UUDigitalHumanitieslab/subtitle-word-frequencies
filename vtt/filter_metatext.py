@@ -17,6 +17,11 @@ def is_in_parentheses(fragment):
 def is_uppercase(fragment):
     return re.search(r'[A-Z]', fragment) and fragment.upper() == fragment
 
+def start_with_asterisk(fragment):
+    '''Song lyrics often start with *'''
+
+    return fragment.startswith('*')
+
 def qualifies_for_any(fragment, functions):
     '''Returns True if  any of the functions in `functions` return true for `fragment`.'''
 
@@ -25,7 +30,7 @@ def qualifies_for_any(fragment, functions):
 def is_metatext(fragment):
     '''Returns True if a fragment should be counted as metatext and thus ignored.'''
 
-    metatext_checks = [matches_metatext_re, is_in_parentheses, is_uppercase]
+    metatext_checks = [matches_metatext_re, is_in_parentheses, is_uppercase, start_with_asterisk]
     return qualifies_for_any(fragment, metatext_checks)
 
 def filter_metatext(text_fragments):
