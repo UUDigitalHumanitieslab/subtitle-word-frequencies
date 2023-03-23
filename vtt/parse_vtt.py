@@ -11,10 +11,7 @@ def parse_vtt(filename):
         content = f.read()
     
     timeframes = split_timeframes(content)
-    lines = flatmap(lines_from_timeframe, timeframes)
-    segments = flatmap(segments_from_line, lines)
-      
-    return segments
+    return map(text_from_timeframe, timeframes)
 
 # regular expressions
 timestamp = r'\d{2}:\d{2}:\d{2}.\d+'
@@ -55,8 +52,15 @@ def lines_from_timeframe(timeframe):
     return lines[1:] #ignore line with the timestamp
 
 def segments_from_line(line):
+    '''Generate all text segments in a line, ignoring tags.'''
     if re.search(segment, line):
         for match in re.finditer(segment, line):
             yield match.group(2)
     else:
         yield line
+
+def text_from_timeframe(timeframe):
+    '''Get flat text from a timeframe segment.'''
+    lines = lines_from_timeframe(timeframe)
+    segments = flatmap(segments_from_line, lines)
+    return '\n'.join(segments)

@@ -6,15 +6,11 @@ test_file = os.path.join(os.path.dirname(__file__), 'test_data', 'test.vtt')
 def test_parse_vtt():
     lines = list(parse_vtt(test_file))
 
-    expected_lines = 15
+    expected_lines = 10
     expected = [
         '888',
-        'Bla bla.',
-        'Bla bla?',
-        'Bla.',
-        'Bla bla bla.',
-        'Bla!',
-        'Bla bla!',
+        '\n'.join(['Bla bla.', 'Bla bla?', 'Bla.']),
+        '\n'.join(['Bla bla bla.', 'Bla!', 'Bla bla!']),
         # ... etc
     ]
 
