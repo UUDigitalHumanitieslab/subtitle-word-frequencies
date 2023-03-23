@@ -5,16 +5,16 @@ from metadata.collect import filenames_for_genre
 
 files_per_genre = {
     ('Informatief', 'Nieuws/actualiteiten'): [
-        'TEST-ZENDER0123456789',
-        'TOETS-ZENDER0858694839',
+        'TEST-ZENDER0123456789.vtt',
+        'TOETS-ZENDER0858694839.vtt',
     ],
     ('Informatief', 'Spel/quiz'): [
-        'TESTEN-ZENDER04840389494'
+        'TESTEN-ZENDER04840389494.vtt'
     ],
     ('Informatief', None): [
-        'TEST-ZENDER0123456789',
-        'TOETS-ZENDER0858694839',
-        'TESTEN-ZENDER04840389494',    
+        'TEST-ZENDER0123456789.vtt',
+        'TOETS-ZENDER0858694839.vtt',
+        'TESTEN-ZENDER04840389494.vtt',    
     ]
 }
 
