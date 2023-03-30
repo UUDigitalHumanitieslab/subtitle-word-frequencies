@@ -36,6 +36,6 @@ def test_list_genres(metadata_filename):
 
 def test_collect_texts(metadata_filename, data_directory):
     print(data_directory)
-    texts = text_per_genre(metadata_filename, data_directory)
+    texts = list(text_per_genre(metadata_filename, data_directory))
     assert len(texts) == 2
-    assert texts[('Informatief', 'Spel/quiz')] == 'Dit is een test.'
+    assert texts[1] == 'Dit is een test.'

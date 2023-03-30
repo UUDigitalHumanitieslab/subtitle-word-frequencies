@@ -9,15 +9,14 @@ def collect_genres(metadata_file):
     return list_genres(metadata)
 
 def text_per_genre(metadata_file, data_directory):
-    '''Returns a dict with the complete string of text for each genre.'''
+    '''Returns a generator with the complete string of text for each genre.'''
     metadata = list(parse_metadata(metadata_file))
     genres = collect_genres(metadata_file)
 
-    return {
-        (genre, subgenre):
-            text_for_genre(data_directory, metadata, genre, subgenre)
+    return (
+        text_for_genre(data_directory, metadata, genre, subgenre)
         for genre, subgenre in genres
-    }
+    )
 
 def text_for_genre(data_directory, metadata, genre, subgenre):
     '''Returns all the text for a genre as a single string.
