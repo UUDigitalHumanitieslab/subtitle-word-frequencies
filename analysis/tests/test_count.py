@@ -13,7 +13,7 @@ texts = [
 ]
 
 def test_vocab():
-    cv = make_vectoriser(texts)
+    cv, _ = make_vectoriser(texts)
     vocab = list(cv.get_feature_names_out())
     
     assert 'hi' in vocab
@@ -22,9 +22,8 @@ def test_vocab():
     )
 
 def test_counts():
-    cv = make_vectoriser(texts)
+    cv, tdm = make_vectoriser(texts)
     vocab_size = cv.get_feature_names_out().size
-    tdm = count_tokens(cv, texts)
     assert tdm.shape == (len(texts), vocab_size)
 
     totals = total_frequencies(tdm)
