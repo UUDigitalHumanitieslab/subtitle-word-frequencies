@@ -2,6 +2,7 @@ import pytest
 
 from metadata.parse import parse_metadata
 from metadata.collect_files import filenames_for_genre, list_genres
+from metadata.collect_texts import text_per_genre
 
 files_per_genre = {
     ('Informatief', 'Nieuws/actualiteiten'): [
@@ -32,3 +33,9 @@ def test_list_genres(metadata_filename):
         ('Informatief', 'Nieuws/actualiteiten'),
         ('Informatief', 'Spel/quiz')
     }
+
+def test_collect_texts(metadata_filename, data_directory):
+    print(data_directory)
+    texts = text_per_genre(metadata_filename, data_directory)
+    assert len(texts) == 2
+    assert texts[('Informatief', 'Spel/quiz')] == 'Dit is een test.'
