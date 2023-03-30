@@ -1,11 +1,11 @@
 import os
 from datetime import datetime
 
-from metadata.parse import parse
+from metadata.parse import parse_metadata
 
 
 def test_parse(metadata_filename):
-    parsed = list(parse(metadata_filename))
+    parsed = list(parse_metadata(metadata_filename))
 
     assert len(parsed) == 3
 

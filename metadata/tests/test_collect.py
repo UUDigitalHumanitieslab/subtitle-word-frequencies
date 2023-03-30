@@ -1,7 +1,7 @@
 import pytest
 
-from metadata.parse import parse
-from metadata.collect import filenames_for_genre
+from metadata.parse import parse_metadata
+from metadata.collect_files import filenames_for_genre
 
 files_per_genre = {
     ('Informatief', 'Nieuws/actualiteiten'): [
@@ -20,6 +20,6 @@ files_per_genre = {
 
 @pytest.mark.parametrize('genre,subgenre', files_per_genre.keys())
 def test_filenames_for_genre(genre, subgenre, metadata_filename):
-    metadata = parse(metadata_filename)
+    metadata = parse_metadata(metadata_filename)
     filenames = filenames_for_genre(metadata, genre, subgenre)
     assert list(filenames) == files_per_genre[(genre, subgenre)]

@@ -6,13 +6,13 @@ import csv
 from functools import reduce
 import re
 
-from metadata.parse import parse
+from metadata.parse import parse_metadata
 from metadata.genres import split_genre
 
 def summarise_genres(metadata_path, summary_path):
     '''Read the metadata file and write a csv summary'''
 
-    data = parse(metadata_path)
+    data = parse_metadata(metadata_path)
     aggregated_genres = aggregate_genres(data)
 
     with open(summary_path, 'w') as f:

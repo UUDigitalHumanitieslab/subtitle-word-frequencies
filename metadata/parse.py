@@ -2,7 +2,7 @@
 
 from openpyxl import load_workbook
 
-def parse(filename):
+def parse_metadata(filename):
     wb = load_workbook(filename)
     sheet = wb[wb.sheetnames[0]]
 
