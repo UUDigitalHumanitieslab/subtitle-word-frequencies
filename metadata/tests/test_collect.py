@@ -1,8 +1,8 @@
 import pytest
-
+import os
 from metadata.parse import parse_metadata
 from metadata.collect_files import filenames_for_genre, list_genres
-from metadata.collect_texts import text_per_genre
+from metadata.collect_texts import text_per_genre, filter_existing_files
 
 files_per_genre = {
     ('Informatief', 'Nieuws/actualiteiten'): [
@@ -39,3 +39,15 @@ def test_collect_texts(metadata_filename, data_directory):
     texts = list(text_per_genre(metadata_filename, data_directory))
     assert len(texts) == 2
     assert texts[1] == 'Dit is een test.'
+
+def test_filter_existing_files(data_directory):
+    files = [
+        'TEST-ZENDER0123456789.vtt',
+        'nonsense.vtt',
+        'TOETS-ZENDER0858694839.vtt',
+    ]
+
+    paths = [os.path.join(data_directory, filename) for filename in files]
+
+    real_files = list(filter_existing_files(paths))
+    assert len(real_files) == 2

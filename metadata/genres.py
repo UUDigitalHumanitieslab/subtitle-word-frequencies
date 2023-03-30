@@ -5,5 +5,5 @@ def split_genre(genre_full):
     sep = r' [-–] '
     if len(re.findall(sep, genre_full)) == 1:
         return tuple(re.split(sep, genre_full))
-    else:
-        return genre_full, None
+
+    return genre_full, ''
