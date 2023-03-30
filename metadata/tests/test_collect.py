@@ -29,10 +29,10 @@ def test_list_genres(metadata_filename):
     metadata = parse_metadata(metadata_filename)
     genres = list_genres(metadata)
     print(genres)
-    assert genres == {
+    assert genres == [
         ('Informatief', 'Nieuws/actualiteiten'),
         ('Informatief', 'Spel/quiz')
-    }
+    ]
 
 def test_collect_texts(metadata_filename, data_directory):
     print(data_directory)

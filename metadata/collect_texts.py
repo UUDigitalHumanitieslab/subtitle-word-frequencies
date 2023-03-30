@@ -6,7 +6,7 @@ from vtt.filter_metatext import filter_metatext
 
 def collect_genres(metadata_file):
     metadata = parse_metadata(metadata_file)
-    return list(list_genres(metadata))
+    return list_genres(metadata)
 
 def text_per_genre(metadata_file, data_directory):
     '''Returns a dict with the complete string of text for each genre.'''
