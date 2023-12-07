@@ -2,3 +2,4 @@ openpyxl
 pytest
 scikit-learn
 click
+pandas

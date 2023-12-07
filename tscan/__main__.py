@@ -1,6 +1,8 @@
 import click
 import os
 
+from .format import convert_to_tscan_format
+
 here = os.path.dirname(__file__)
 data_dir = os.path.join(here, '..', 'data')
 
@@ -23,8 +25,7 @@ default_output = os.path.join(data_dir, 'token_frequencies_tscan.csv')
     prompt='output file',
 )
 def format(input, output):
-    print(input)
-    print(output)
+    convert_to_tscan_format(input, output)
 
 
 if __name__ == '__main__':
