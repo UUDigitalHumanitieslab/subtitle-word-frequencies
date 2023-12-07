@@ -7,7 +7,7 @@ here = os.path.dirname(__file__)
 data_dir = os.path.join(here, '..', 'data')
 
 default_input = os.path.join(data_dir, 'token_frequencies.csv')
-default_output = os.path.join(data_dir, 'token_frequencies_tscan.csv')
+default_output = os.path.join(data_dir, 'npo_2022_all_words.freq')
 
 
 @click.command()

@@ -19,7 +19,9 @@ def get_total_frequencies(df: pandas.DataFrame):
         'freq': freq,
     })
 
-    return result.sort_values(by='freq', ascending=False)
+    filtered = result[result['freq'] > 1]
+
+    return filtered.sort_values(by='freq', ascending=False)
 
 
 def add_relative_and_cumulative(df: pandas.DataFrame):
