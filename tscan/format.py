@@ -4,7 +4,8 @@ import pandas
 
 def convert_to_tscan_format(input_file, output_file):
     df = pandas.read_csv(input_file)
-    prepare_data(df)
+    processed = prepare_data(df)
+    save_data(processed, output_file)
 
 
 def get_total_frequencies(df: pandas.DataFrame):
@@ -37,8 +38,18 @@ def add_relative_and_cumulative(df: pandas.DataFrame):
     })
 
 
+def save_data(df: pandas.DataFrame, output_path: str):
+    with open(output_path, 'w') as output_io:
+        for _, row in df.iterrows():
+            content = '{}\t{}\t{}\t{}\n'.format(
+                row['term'],
+                row['freq_abs'],
+                row['freq_abs_cum'],
+                row['freq_rel_cum'],
+            )
+            output_io.write(content)
+
 def prepare_data(df: pandas.DataFrame):
     freqs = get_total_frequencies(df)
     complete = add_relative_and_cumulative(freqs)
-
-    print(complete)
+    return complete
