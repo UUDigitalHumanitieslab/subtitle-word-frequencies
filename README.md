@@ -51,10 +51,10 @@ You can count token frequencies in the data and export them to a csv with:
 python -m analysis.collect_counts
 ```
 
-Or specify the location of the metadata, subtitles directory, and output file:
+You can also specify the input data, the output location, and add a lemmatiser. By default, no lemmatisation will be applied. Options for the lemmatiser are `frog` and `spacy`.
 
 ```bash
-python -m analysis.collect_counts path/to/metadata.xlsx path/to/data path/to/output.csv
+python -m analysis.collect_counts path/to/metadata.xlsx --output path/to-output.csv --lemmatizer frog
 ```
 
-The resulting csv file lists the frequency for each word, split by genre.
+The resulting csv file lists the frequency for each word, split by genre. If you specified a lemmatiser, frequencies are given by lemma instead.
