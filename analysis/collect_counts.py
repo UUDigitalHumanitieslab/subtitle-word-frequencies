@@ -4,7 +4,7 @@ import os
 from metadata.collect_texts import collect_genres, text_per_genre
 from metadata.summary import find_metadata_file
 from analysis.count import make_vectoriser
-from analysis.lemmatize import lemmatize
+from analysis.lemmatize import Lemmatizer
 
 
 def collect_token_counts(metadata_file, data_directory, lemmatize=False):
@@ -27,7 +27,8 @@ def collect_token_counts(metadata_file, data_directory, lemmatize=False):
     texts = text_per_genre(metadata_file, data_directory)
 
     if lemmatize:
-        processed = (lemmatize(text) for text in texts)
+        lemmatizer = Lemmatizer()
+        processed = (lemmatizer.process(text) for text in texts)
     else:
         processed = texts
 
