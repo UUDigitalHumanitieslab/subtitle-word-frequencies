@@ -4,7 +4,7 @@ import os
 from .format import convert_to_tscan_format
 
 here = os.path.dirname(__file__)
-data_dir = os.path.join(here, '..', 'data')
+data_dir = os.path.normpath(os.path.join(here, '..', 'data'))
 
 default_input = os.path.join(data_dir, 'token_frequencies.csv')
 default_output = os.path.join(data_dir, 'npo_2022_all_words.freq')

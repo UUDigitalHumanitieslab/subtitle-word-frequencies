@@ -1,11 +1,10 @@
-import sys
 import csv
 import os
+import click
 from metadata.collect_texts import collect_genres, text_per_genre
 from metadata.summary import find_metadata_file
 from analysis.count import make_vectoriser
 from analysis.lemmatize import Lemmatizer
-
 
 def collect_token_counts(metadata_file, data_directory, lemmatizer=None):
     '''
@@ -55,22 +54,51 @@ def save_counts(csv_path, genres, vocab, tdm):
             data = {'Term': term, **frequencies}
             writer.writerow(data)
 
-def collect_and_save_counts(metadata_file, data_directory, output_file):
-    if not os.path.isfile(metadata_file):
-        print('Metadatafile {} does not exist!'.format(metadata_file))
-    elif not os.path.isdir(data_directory):
-        print('Data directory {} does not exist!'.format(data_directory))
-    else:
-        counts = collect_token_counts(metadata_file, data_directory)
-        save_counts(output_file, *counts)
-        print('Done! Output file in {}'.format(os.path.abspath(output_file)))
+
+def collect_and_save_counts(metadata_file, data_directory, output_file, lemmatizer=None):
+    counts = collect_token_counts(metadata_file, data_directory, lemmatizer)
+    save_counts(output_file, *counts)
+    print('Done! Output file in {}'.format(os.path.abspath(output_file)))
+
+# CLI
+
+
+here = os.path.dirname(__file__)
+data_dir = os.path.normpath(os.path.join(here, '..', 'data'))
+
+vtt_dir_default = os.path.join(data_dir, 'NPO_vtt_dataset')
+metadata_file_default = find_metadata_file()
+output_file_default = os.path.join(data_dir, '..', 'token_frequencies.csv')
+
+
+@click.command()
+@click.argument(
+    'metadata_file',
+    type=click.Path(exists=True),
+    default=metadata_file_default,
+)
+@click.argument(
+    'metadata_file',
+    type=click.Path(exists=True, file_okay=True, dir_okay=False),
+    default=metadata_file_default,
+)
+@click.argument(
+    'vtt_dir',
+    type=click.Path(exists=True, dir_okay=True, file_okay=False),
+    default=vtt_dir_default,
+)
+@click.option(
+    '--output',
+    type=click.Path(),
+    default=output_file_default,
+)
+@click.option(
+    '--lemmatizer',
+    type=click.Choice(['frog', 'spacy'])
+)
+def run(metadata_file, vtt_dir, output, lemmatizer):
+    collect_and_save_counts(metadata_file, vtt_dir, output, lemmatizer)
+
 
 if __name__ == '__main__':
-    if len(sys.argv) == 4:
-        metadata_file, data_dir, output_file = sys.argv[1:]
-    else:
-        data_dir = os.path.join(os.path.dirname(__file__), '..', 'data', 'NPO_vtt_dataset')
-        metadata_file = find_metadata_file()
-        output_file = os.path.join(data_dir, '..', 'token_frequencies.csv')
-        
-    collect_and_save_counts(metadata_file, data_dir, output_file)
+    run()

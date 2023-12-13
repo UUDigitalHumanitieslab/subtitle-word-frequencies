@@ -55,7 +55,8 @@ def add_row_to_genre_aggregation(data_by_genre, row):
     return data_by_genre
     
 
-data_dir = os.path.join(os.path.dirname(__file__), '..', 'data')
+here = os.path.dirname(__file__)
+data_dir = os.path.normpath(os.path.join(here, '..', 'data'))
 
 def find_metadata_file():
     '''Find the metadata file in the excel directory'''
