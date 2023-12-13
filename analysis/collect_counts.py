@@ -4,12 +4,19 @@ import os
 from metadata.collect_texts import collect_genres, text_per_genre
 from metadata.summary import find_metadata_file
 from analysis.count import make_vectoriser
+from analysis.lemmatize import lemmatize
 
-def collect_token_counts(metadata_file, data_directory):
+
+def collect_token_counts(metadata_file, data_directory, lemmatize=False):
     '''
     Collect token counts per genre.
+
+    Input:
+    - path to the metadata file
+    - path to the directory containing VTT subtitle files
+    - `lemmas` (default False): whether data should be lemmatised. 
     
-    Returns a tuple of the followin:
+    Returns a tuple of the following:
     - a list of genres. Each genre is a tuple of genre/subgenre.
     - a list of the term in the vocabulary.
     - a matrix of term frequencies per genres. m[i,j] gives the frequency
@@ -18,7 +25,13 @@ def collect_token_counts(metadata_file, data_directory):
     genres = collect_genres(metadata_file)
 
     texts = text_per_genre(metadata_file, data_directory)
-    cv, tdm = make_vectoriser(texts)
+
+    if lemmatize:
+        processed = (lemmatize(text) for text in texts)
+    else:
+        processed = texts
+
+    cv, tdm = make_vectoriser(processed)
     vocab = list(cv.get_feature_names_out())
 
     return genres, vocab, tdm
