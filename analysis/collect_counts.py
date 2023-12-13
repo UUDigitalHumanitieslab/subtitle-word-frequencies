@@ -7,14 +7,14 @@ from analysis.count import make_vectoriser
 from analysis.lemmatize import Lemmatizer
 
 
-def collect_token_counts(metadata_file, data_directory, lemmatize=False):
+def collect_token_counts(metadata_file, data_directory, lemmatizer=None):
     '''
     Collect token counts per genre.
 
     Input:
     - path to the metadata file
     - path to the directory containing VTT subtitle files
-    - `lemmas` (default False): whether data should be lemmatised. 
+    - `lemmatizer` (default None): lemmatisation method. Either `None`, `'frog'`, or `'spacy'`
     
     Returns a tuple of the following:
     - a list of genres. Each genre is a tuple of genre/subgenre.
@@ -26,8 +26,8 @@ def collect_token_counts(metadata_file, data_directory, lemmatize=False):
 
     texts = text_per_genre(metadata_file, data_directory)
 
-    if lemmatize:
-        lemmatizer = Lemmatizer()
+    if lemmatizer in ['spacy', 'frog']:
+        lemmatizer = Lemmatizer(lemmatizer)
         processed = (lemmatizer.process(text) for text in texts)
     else:
         processed = texts
