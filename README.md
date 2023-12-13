@@ -6,10 +6,15 @@ Code for analysing subtitle data from the NPO and extracting word frequency tabl
 
 Using a python environment, install requirements with `pip install -r requirements.txt`. 
 
-To perform lemmatisation, you'll also need to download the spacy model. After installing the requirements, run:
+### Lemmatisers
+
+To perform lemmatisation, you'll also need to download data for spacy and/or frog.
+
+After installing the requirements, run:
 
 ```sh
 python -m spacy download nl_core_news_sm
+python -c "import frog; frog.installdata()"
 ```
 
 To add new python packages, add them to `requirements.in` and run `pip-compile requirements.in --outputfile requirements.txt`.
