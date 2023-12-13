@@ -34,6 +34,8 @@ cymem==2.0.8
     #   preshed
     #   spacy
     #   thinc
+cython==3.0.6
+    # via python-frog
 et-xmlfile==1.1.0
     # via openpyxl
 exceptiongroup==1.1.1
@@ -91,6 +93,8 @@ pytest==7.2.2
     # via -r requirements.in
 python-dateutil==2.8.2
     # via pandas
+python-frog==0.6.10
+    # via -r requirements.in
 pytz==2023.3.post1
     # via pandas
 requests==2.31.0
