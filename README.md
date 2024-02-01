@@ -1,5 +1,7 @@
 # Subtitle word frequencies
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10607189.svg)](https://doi.org/10.5281/zenodo.10607189)
+
 This repository contains python scripts to extract word frequency data from a collection of subtitle files.
 
 Notable features:

@@ -12,6 +12,9 @@ authors:
     country: NL
     email: cdh@uu.nl
 repository-code: 'https://github.com/UUDigitalHumanitieslab/subtitle-word-frequencies'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.10607189
 license: BSD-3-Clause
 version: 0.0.0
 date-released: '2024-02-01'
