@@ -19,7 +19,7 @@ Our data encodes subtitles as [WebVTT files](https://en.wikipedia.org/wiki/WebVT
 
 ### Scripts
 
-Scripts are written in [python](https://www.python.org/) and are structured into the following modules:
+Scripts are written in [Python](https://www.python.org/) and are structured into the following modules:
 
 - [analysis](/analysis/) for counting and lemmatising extracted text
 - [metadata](/metadata/) for parsing the metadata file to extract filenames and genres
@@ -28,7 +28,16 @@ Scripts are written in [python](https://www.python.org/) and are structured into
 
 ## Requirements
 
-Using a python environment, install requirements with `pip install -r requirements.txt`. 
+You'll need:
+
+- [Python](https://www.python.org/)
+- [pip](https://pypi.org/project/pip/)
+
+Install required python packages with 
+
+```bash
+pip install -r requirements.txt
+```
 
 ### Lemmatisers
 
@@ -40,8 +49,6 @@ After installing the requirements, run:
 python -m spacy download nl_core_news_sm
 python -c "import frog; frog.installdata()"
 ```
-
-To add new python packages, add them to `requirements.in` and run `pip-compile requirements.in --outputfile requirements.txt`.
 
 ## Usage
 
@@ -83,7 +90,18 @@ The resulting csv file lists the frequency for each word, split by genre. If you
 
 ### Unit tests
 
-Run unit tests with `pytest`
+Run unit tests with
+
+ ```bash
+pytest
+```
+
+To add new python packages, add them to `requirements.in` and run 
+
+```bash
+pip-compile requirements.in --outputfile requirements.txt
+```
+
 
 ## Licence
 
