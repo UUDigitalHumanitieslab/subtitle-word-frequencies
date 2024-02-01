@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: Subtitle word frequencies
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name: 'Research Software Lab, Centre for Digital Humanities, Utrecht University'
+    website: >-
+      https://cdh.uu.nl/centre-for-digital-humanities/research-software-lab/
+    city: Utrecht
+    country: NL
+    email: cdh@uu.nl
+repository-code: 'https://github.com/UUDigitalHumanitieslab/subtitle-word-frequencies'
+license: BSD-3-Clause
+version: 0.0.0
+date-released: '2024-02-01'

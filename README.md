@@ -1,6 +1,30 @@
-# subtitle-word-frequencies
+# Subtitle word frequencies
 
-Code for analysing subtitle data from the NPO and extracting word frequency tables.
+This repository contains python scripts to extract word frequency data from a collection of subtitle files.
+
+Notable features:
+- Frequency lists can be output in the format used by [T-scan](https://github.com/UUDigitalHumanitieslab/tscan).
+- Subtitle files can be split by the genres defined in an accompanying metadata file
+- Text can be lemmatised using [Frog](https://frognlp.readthedocs.io/en/latest/) or [SpaCy](https://spacy.io/).
+
+The purpose of this repository is to provide transparency in our data collection and to make it easier to repeat the frequency analysis on newer data in the future. It is not developed to be of general use, but we include a licence for reuse (see below).
+
+## Contents
+
+### Data
+
+The scripts are designed for a collection of subtitles from the NPO (Dutch public broadcast). This dataset is _not_ provided in this repository and is not publicly available due to copyright restrictions. The Research Software Lab works on this data in agreement with the NPO, but we cannot share the data with others.
+
+Our data encodes subtitles as [WebVTT files](https://en.wikipedia.org/wiki/WebVTT), with an accompanying metadata file included as an [.xlsx file](https://en.wikipedia.org/wiki/Office_Open_XML).
+
+### Scripts
+
+Scripts are written in [python](https://www.python.org/) and are structured into the following modules:
+
+- [analysis](/analysis/) for counting and lemmatising extracted text
+- [metadata](/metadata/) for parsing the metadata file to extract filenames and genres
+- [tscan](/tscan/) for creating output in the format used by T-scan
+- [vtt](/vtt/) for extracting strings from .vtt files
 
 ## Requirements
 
@@ -18,10 +42,6 @@ python -c "import frog; frog.installdata()"
 ```
 
 To add new python packages, add them to `requirements.in` and run `pip-compile requirements.in --outputfile requirements.txt`.
-
-## Unit tests
-
-Run unit tests with `pytest`
 
 ## Usage
 
@@ -58,3 +78,13 @@ python -m analysis.collect_counts path/to/metadata.xlsx --output path/to-output.
 ```
 
 The resulting csv file lists the frequency for each word, split by genre. If you specified a lemmatiser, frequencies are given by lemma instead.
+
+## Developing
+
+### Unit tests
+
+Run unit tests with `pytest`
+
+## Licence
+
+This repository is shared under a [BSD 3-Clause licence](/LICENSE).
