@@ -74,11 +74,6 @@ output_file_default = os.path.join(data_dir, '..', 'token_frequencies.csv')
 @click.command()
 @click.argument(
     'metadata_file',
-    type=click.Path(exists=True),
-    default=metadata_file_default,
-)
-@click.argument(
-    'metadata_file',
     type=click.Path(exists=True, file_okay=True, dir_okay=False),
     default=metadata_file_default,
 )
