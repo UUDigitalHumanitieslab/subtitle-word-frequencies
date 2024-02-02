@@ -21,7 +21,9 @@ def export_plain_text(vtt_filename):
     output_filename = name + '.plain.txt'
 
     with open(output_filename, 'w') as outfile:
-        outfile.writelines(filtered_lines)
+        for line in filtered_lines:
+            outfile.write(line)
+            outfile.write('\n')
     
     return output_filename
 

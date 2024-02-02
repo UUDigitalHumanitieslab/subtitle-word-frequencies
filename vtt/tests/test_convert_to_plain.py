@@ -19,4 +19,4 @@ def test_export_plain_text(test_file):
 
     with open(result_path) as result:
         text = result.read()
-        assert text.startswith('Bla bla.\nBla bla?\n')
+        assert text.startswith('Bla bla.\nBla bla?\nBla.\nBla bla bla.')
