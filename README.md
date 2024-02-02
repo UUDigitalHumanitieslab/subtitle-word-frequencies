@@ -72,6 +72,18 @@ You can also specify the location:
 python -m metadata.summary path/to/metadata.xlsx path/to/output.csv
 ```
 
+### Export plain text of VTT files
+
+Takes a directory containing `.vtt` files as input and converts the contents to plain text files.
+
+```bash
+python -m vtt.convert_to_plain path/to/data
+```
+
+For each `*.vtt` file in the provided directory, the script will save a file next to it named `*.plain.txt`. This file contains the text of the subtitles, with one line per segment.
+
+The script filters out some common non-utterances that appear in captions, e.g. `(muziek)`, `APPLAUS EN GEJUICH`, `888`.
+
 ### Save token frequencies
 
 You can count token frequencies in the data and export them to a csv with:
