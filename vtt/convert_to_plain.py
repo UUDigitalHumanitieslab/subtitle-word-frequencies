@@ -4,6 +4,8 @@ import click
 from .parse_vtt import parse_vtt
 from .filter_metatext import filter_metatext
 
+PLAIN_EXTENSION = '.plain.txt'
+
 def export_plain_text(vtt_filename):
     '''
     Export a plain text version of a .vtt subtitle file
@@ -17,8 +19,7 @@ def export_plain_text(vtt_filename):
     lines = parse_vtt(vtt_filename)
     filtered_lines = filter_metatext(lines)
 
-    name, _ext = os.path.splitext(vtt_filename)
-    output_filename = name + '.plain.txt'
+    output_filename = replace_suffix(vtt_filename, '.vtt', PLAIN_EXTENSION)
 
     with open(output_filename, 'w') as outfile:
         for line in filtered_lines:
@@ -30,12 +31,29 @@ def export_plain_text(vtt_filename):
 def list_vtt_files(directory):
     '''
     Return the path of every .vtt file in a directory
+    '''
+    return list_files_with_suffix(directory, '.vtt')
 
-    Returns a list of paths (strings). Not recursive: only lists direct children
+def list_plain_text_files(directory):
+    '''
+    Return the path of every .plain.txt file in a directory
+    '''
+    return list_files_with_suffix(directory, PLAIN_EXTENSION)
+
+def replace_suffix(filename, old, new):
+    name = filename.removesuffix(old)
+    output_filename = name + new
+    return output_filename
+
+def list_files_with_suffix(directory, suffix):
+    '''
+    Return the path of every file in a directory of which the name ends in `suffix`
+
+    Not recursive: lists only direct children. Returns filepaths.
     '''
     
     files = filter(
-        lambda filename: filename.endswith('.vtt'),
+        lambda filename: filename.endswith(suffix),
         os.listdir(directory)
     )
     paths = map(
@@ -43,7 +61,6 @@ def list_vtt_files(directory):
         files,
     )
     return list(paths)
-
 
 @click.command()
 @click.argument(
