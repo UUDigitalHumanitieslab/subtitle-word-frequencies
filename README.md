@@ -24,9 +24,9 @@ Our data encodes subtitles as [WebVTT files](https://en.wikipedia.org/wiki/WebVT
 Scripts are written in [Python](https://www.python.org/) and are structured into the following modules:
 
 - [analysis](/analysis/) for counting and lemmatising extracted text
-- [metadata](/metadata/) for parsing the metadata file to extract filenames and genres
-- [tscan](/tscan/) for creating output in the format used by T-scan
-- [vtt](/vtt/) for extracting strings from .vtt files
+- [metadata](/metadata/) for parsing the metadata file to see the distribution of genres
+- [tscan](/tscan/) for converting frequency data to the format used by T-scan
+- [vtt](/vtt/) for extracting plain-text data from .vtt files
 
 ## Requirements
 
