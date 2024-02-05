@@ -5,8 +5,8 @@
 This repository contains python scripts to extract word frequency data from a collection of subtitle files.
 
 Notable features:
-- Frequency lists can be output in the format used by [T-scan](https://github.com/UUDigitalHumanitieslab/tscan).
-- Subtitle files can be split by the genres defined in an accompanying metadata file
+- Frequency lists can be converted to the format used by [T-scan](https://github.com/UUDigitalHumanitieslab/tscan).
+- Summarise the total data per genre based on an accompanying metadata file
 - Text can be lemmatised using [Frog](https://frognlp.readthedocs.io/en/latest/) or [spaCy](https://spacy.io/).
 
 The purpose of this repository is to provide transparency in our data processing and to make it easier to repeat the frequency analysis on newer data in the future. It is not developed to be of general use, but we include a licence for reuse (see below).
