@@ -32,7 +32,7 @@ Scripts are written in [Python](https://www.python.org/) and are structured into
 
 You'll need:
 
-- [Python](https://www.python.org/)
+- [Python](https://www.python.org/) 3.10 or higher
 - [pip](https://pypi.org/project/pip/)
 
 Install required python packages with 
