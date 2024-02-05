@@ -112,6 +112,21 @@ python -m analysis.collect_counts path/to/data --output path/to-output.csv --lev
 
 The resulting csv file lists the frequency for each word or lemma.
 
+### Convert frequencies to T-scan format
+
+You can convert the output of the previous step into a file formatted for T-scan.
+
+```bash
+python -m tscan --input path/to/input.csv --output path/to/output
+```
+
+This is a tab-separated file without headers. Each row represents a term. Rows are sorted from most to least frequent and list:
+
+- the term
+- the absolute frequency
+- the cumulative absolute frequency
+- the cumulative percentile frequency
+
 ## Developing
 
 ### Unit tests
