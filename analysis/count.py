@@ -1,4 +1,5 @@
 from sklearn.feature_extraction.text import CountVectorizer
+import numpy as np
 
 def make_vectoriser(texts):
     cv = CountVectorizer()
@@ -7,4 +8,6 @@ def make_vectoriser(texts):
 
 def total_frequencies(tdm):
     '''Get total frequencies from a term-document matrix'''
-    return tdm.sum(0)
+    summed = tdm.sum(0)
+    flat = np.asarray(summed).squeeze().tolist()
+    return flat

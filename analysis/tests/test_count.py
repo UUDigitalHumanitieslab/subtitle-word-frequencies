@@ -27,4 +27,4 @@ def test_counts():
     assert tdm.shape == (len(texts), vocab_size)
 
     totals = total_frequencies(tdm)
-    assert totals.shape == (1, vocab_size)
+    assert len(totals) == vocab_size
