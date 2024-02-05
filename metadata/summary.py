@@ -4,7 +4,6 @@ import os
 import sys
 import csv
 from functools import reduce
-import re
 
 from metadata.parse import parse_metadata
 from metadata.genres import split_genre

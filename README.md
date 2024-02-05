@@ -7,9 +7,9 @@ This repository contains python scripts to extract word frequency data from a co
 Notable features:
 - Frequency lists can be output in the format used by [T-scan](https://github.com/UUDigitalHumanitieslab/tscan).
 - Subtitle files can be split by the genres defined in an accompanying metadata file
-- Text can be lemmatised using [Frog](https://frognlp.readthedocs.io/en/latest/) or [SpaCy](https://spacy.io/).
+- Text can be lemmatised using [Frog](https://frognlp.readthedocs.io/en/latest/) or [spaCy](https://spacy.io/).
 
-The purpose of this repository is to provide transparency in our data collection and to make it easier to repeat the frequency analysis on newer data in the future. It is not developed to be of general use, but we include a licence for reuse (see below).
+The purpose of this repository is to provide transparency in our data processing and to make it easier to repeat the frequency analysis on newer data in the future. It is not developed to be of general use, but we include a licence for reuse (see below).
 
 ## Contents
 
@@ -58,13 +58,13 @@ The following commands are supported.
 
 ### Summary of genres
 
-You can create a csv file that lists the genres and the number of files + total runtime per genre specified in the metadata spreadsheet. To run this:
+You can create a csv file that lists the genres and the number of files + total runtime per genre specified in a metadata spreadsheet. To run this:
 
 ```bash
 python -m metadata.summary
 ```
 
-to create a summary of the metadata file located in `/data`, assuming your data folder contains a single xlsx file.
+to create a summary of the metadata file located in `/data`, which makes sense if the data folder contains a single xlsx file.
 
 You can also specify the location:
 
