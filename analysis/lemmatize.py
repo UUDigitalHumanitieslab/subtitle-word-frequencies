@@ -48,7 +48,6 @@ def export_lemmatized(plain_text_filename, lemmatizer):
         for line in lines:
             lemmas = lemmatizer.process(line)
             outfile.write(lemmas)
-            outfile.write('\n')
 
     return output_filename
 
